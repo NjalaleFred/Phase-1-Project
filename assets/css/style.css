@@ -1,5 +1,5 @@
 body{
-    background-color: #000000;
+    background-color: white;
     margin: 0px;
     padding: 0px;
 }
@@ -33,6 +33,7 @@ html {
 }
 
 .display .img{
+    border-radius: 5px;
     height: 50vh;
     display: block;
     margin-left: auto;
@@ -54,16 +55,14 @@ html {
     margin-right: auto;
     margin-bottom: 20px;
     border-radius: 7px;
-    border-color: white;
+    border-color: black;
 }
 
-p {
-    color: white;
-}
+
 
 .like {
     font-size: 30px;
-    color: white;
+    color: gray;
     border-radius: 5px;
     border: none;
     background-color: transparent;
@@ -72,4 +71,34 @@ p {
 
 .like .liked{
     background-color: red;
+}
+
+#add-img{
+    background-color: gray;
+    border: solid;
+    border-color: red;
+    color: white;
+    height: 40vh;
+    width: 35%;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input{
+    display: grid;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 50%;
+    border: 3px solid black;
+    padding: 5px;
+}
+
+ .add_img {
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
 }

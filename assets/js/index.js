@@ -44,7 +44,7 @@ function renderDog(dog) {
         if (isLiked) {
           button.style.color = '' // reset to original color
         } else {
-          button.style.color = 'red'
+          button.style.color = 'blue'
         }
         isLiked = !isLiked // toggle state
       })
