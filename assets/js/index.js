@@ -1,5 +1,8 @@
-document.addEventListener('DOMContentLoaded', {
-    fetchDog
+document.addEventListener('DOMContentLoaded',() => {
+   fetchDog()
+   addImage()
+   getDog()
+   
 })
 
 
@@ -16,10 +19,9 @@ function fetchDog() {
     fetch(`${baseURL}`, options)
     .then(response => response.json())
     .then(renderDog)
-        //.then(renderDog => console.log(renderDog))
         .catch(err => console.error(err));
 }
-fetchDog()
+
 
 function renderDog(dog) {
     const display = document.querySelector('.display')
@@ -31,13 +33,25 @@ function renderDog(dog) {
       card.innerHTML = `  
         <p> Breed : ${dog.name} </p>
         <img src="${dog.image.url}" class="img"></img>
-        <p> Life span : ${dog.life_span} </p>
-        <p> Bred for : ${dog.bred_for} </p> 
+        <div>
+        <p>Life span : ${dog.life_span}</p>
+        <p>Bred for : ${dog.bred_for} </p>
+        <p>Temperament:${dog.temperament}</p>
+        </div> 
         <button class="like">
           <span id="icon"><i class="fa fa-thumbs-up"></i></span>
         </button>
-      `
-  
+        <button class="delete">
+        <i class="fa-regular fa-thumbs-down"></i>
+        </button>
+        `
+    
+        /*let remove = card.querySelector('.delete')
+    
+        remove.addEventListener('click', (e)=> {
+          e.target.parentNode.remove()
+        } )*/
+
       const button = card.querySelector('.like')
       let isLiked = false // set initial state to unliked
       button.addEventListener('click', () => {
@@ -53,3 +67,98 @@ function renderDog(dog) {
     });
   }
   
+ function addImage(){
+  const add = document.querySelector('#add-img')
+  add.addEventListener('submit', handleAdd)
+ }
+
+
+function handleAdd(e){
+    e.preventDefault()
+
+    let dogObj = {
+     name :  e.target.breed.value,
+     imageUrl: e.target.image_url.value,
+     life_span :e.target.life_span.value,
+      bred_for:e.target.bred_for.value,
+      temperament:e.target.temperament.value
+    }
+    postDog(dogObj)
+}
+
+function getDog() {
+  fetch('http://localhost:3000/dogs', options)
+  .then(response => response.json())
+  .then(showDog)
+      .catch(err => console.error(err));
+}
+
+function showDog(dog) {
+  const display = document.querySelector('.show')
+
+  dog.forEach(dog => {
+    const card = document.createElement('div')
+    card.className = 'card'
+
+    card.innerHTML = `  
+      <p> Breed : ${dog.name} </p>
+      <img src="${dog.imageUrl}" class="img"></img>
+      <div>
+      <p>Life span : ${dog.life_span}</p>
+      <p>Bred for : ${dog.bred_for} </p>
+      <p>Temperament:${dog.temperament}</p>
+      </div> 
+      <button class="like">
+        <span id="icon"><i class="fa fa-thumbs-up"></i></span>
+      </button>
+      <button class="delete">
+      <span id="Icon"><i class="fa-solid fa-thumbs-down"></i></span>
+      </button>
+    `
+
+   /* let remove = card.querySelector('.delete')
+
+    remove.addEventListener('click', (e)=> {
+      e.target.parentNode.remove()
+      handleDelete(dog)
+    } )*/
+
+    const button = card.querySelector('.like')
+    let isLiked = false // set initial state to unliked
+    button.addEventListener('click', () => {
+      if (isLiked) {
+        button.style.color = '' // reset to original color
+      } else {
+        button.style.color = 'blue'
+      }
+      isLiked = !isLiked // toggle state
+    })
+
+    display.append(card) 
+  });
+}
+
+/*function handleDelete(dog){
+  fetch(`http://localhost:3000/dogs/${dog.id}`, {
+    method:'DELETE',
+    headers : {
+      'Content-Type': 'application/json'
+    },
+  })
+  .then(resp => resp.json())
+}*/
+
+function postDog(dogObj){
+  //console.log(JSON.stringify(dogObj));
+  fetch('http://localhost:3000/dogs', {
+    method:'POST',
+    headers : {
+      'Content-Type': 'application/json'
+    },
+    body : JSON.stringify(dogObj)
+  })
+  .then(resp => resp.json())
+  .then(getDog)
+  .catch(error => console.log(error))
+}
+

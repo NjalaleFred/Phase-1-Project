@@ -48,7 +48,7 @@ html {
 
 .card {
     flex-basis: calc(45% - 10px);
-    height: 500px;
+    height: 85vh;
     box-sizing: border-box;
     border: solid;
     margin-left: auto;
@@ -74,9 +74,9 @@ html {
 }
 
 #add-img{
-    background-color: gray;
+    background-color: wheat;
     border: solid;
-    border-color: red;
+    border-radius: 10px;
     color: white;
     height: 40vh;
     width: 35%;
@@ -101,4 +101,27 @@ input{
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
+}
+
+.show{
+        display: flex;
+        flex-wrap: wrap;
+}
+
+.show .img{
+    border-radius: 5px;
+    height: 50vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+}
+
+.delete {
+    font-size: 30px;
+    color: gray;
+    border-radius: 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
