@@ -41,12 +41,10 @@ function renderDog(dog) {
         <button class="like">
           <span id="icon"><i class="fa fa-thumbs-up"></i></span>
         </button>
-        <button class="delete">
-        <i class="fa-regular fa-thumbs-down"></i>
-        </button>
+      
         `
     
-        /*let remove = card.querySelector('.delete')
+       /* let remove = card.querySelector('.delete')
     
         remove.addEventListener('click', (e)=> {
           e.target.parentNode.remove()
@@ -111,17 +109,15 @@ function showDog(dog) {
       <button class="like">
         <span id="icon"><i class="fa fa-thumbs-up"></i></span>
       </button>
-      <button class="delete">
-      <span id="Icon"><i class="fa-solid fa-thumbs-down"></i></span>
-      </button>
+      <button class="delete">Delete</button>
     `
 
-   /* let remove = card.querySelector('.delete')
+    let remove = card.querySelector('.delete')
 
     remove.addEventListener('click', (e)=> {
       e.target.parentNode.remove()
       handleDelete(dog)
-    } )*/
+    } )
 
     const button = card.querySelector('.like')
     let isLiked = false // set initial state to unliked
@@ -138,7 +134,7 @@ function showDog(dog) {
   });
 }
 
-/*function handleDelete(dog){
+function handleDelete(dog){
   fetch(`http://localhost:3000/dogs/${dog.id}`, {
     method:'DELETE',
     headers : {
@@ -146,10 +142,9 @@ function showDog(dog) {
     },
   })
   .then(resp => resp.json())
-}*/
+}
 
 function postDog(dogObj){
-  //console.log(JSON.stringify(dogObj));
   fetch('http://localhost:3000/dogs', {
     method:'POST',
     headers : {
