@@ -21,30 +21,35 @@ function fetchDog() {
 }
 fetchDog()
 
-function renderDog(dog){
+function renderDog(dog) {
     const display = document.querySelector('.display')
-
+  
     dog.forEach(dog => {
-        const card = document.createElement('div')
-        card.className = 'card'
-
-        card.innerHTML = `  
+      const card = document.createElement('div')
+      card.className = 'card'
+  
+      card.innerHTML = `  
         <p> Breed : ${dog.name} </p>
-        <img src="${dog.image.url}" class="img">
-        </img>
+        <img src="${dog.image.url}" class="img"></img>
         <p> Life span : ${dog.life_span} </p>
         <p> Bred for : ${dog.bred_for} </p> 
         <button class="like">
-        <span id="icon"><i class="fa fa-thumbs-up"></i></span>
-        </button
-        `
-        const button = card.querySelector('.like')
-       
-    button.addEventListener('click', () => {
-      button.style.color = 'red'
-    })
-
-        display.append(card) 
+          <span id="icon"><i class="fa fa-thumbs-up"></i></span>
+        </button>
+      `
+  
+      const button = card.querySelector('.like')
+      let isLiked = false // set initial state to unliked
+      button.addEventListener('click', () => {
+        if (isLiked) {
+          button.style.color = '' // reset to original color
+        } else {
+          button.style.color = 'red'
+        }
+        isLiked = !isLiked // toggle state
+      })
+  
+      display.append(card) 
     });
-    
-}
+  }
+  
