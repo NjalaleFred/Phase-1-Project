@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', {
-
+    fetchDog
 })
 
 
@@ -12,12 +12,14 @@ const options = {
 	}
 };
 
-fetch(`${baseURL}`, options)
-.then(response => response.json())
-.then(renderDog)
-//.then(renderDog => console.log(renderDog))
-.catch(err => console.error(err));
-
+function fetchDog() {
+    fetch(`${baseURL}`, options)
+    .then(response => response.json())
+    .then(renderDog)
+        //.then(renderDog => console.log(renderDog))
+        .catch(err => console.error(err));
+}
+fetchDog()
 
 function renderDog(dog){
     const display = document.querySelector('.display')
@@ -32,8 +34,16 @@ function renderDog(dog){
         </img>
         <p> Life span : ${dog.life_span} </p>
         <p> Bred for : ${dog.bred_for} </p> 
-
+        <button class="like">
+        <span id="icon"><i class="fa fa-thumbs-up"></i></span>
+        </button
         `
+        const button = card.querySelector('.like')
+       
+    button.addEventListener('click', () => {
+      button.style.color = 'red'
+    })
+
         display.append(card) 
     });
     
