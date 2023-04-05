@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded',() => {
    addImage()
    getDog()
    
-})
+}) 
 
 
 const baseURL = 'https://api.thedogapi.com/v1/breeds?limit=20&api_key=live_Nc027cN2IqAiA8vvdJjn9kIaKJxf3CBnf6gVR2AQk6D2I8nH00SLF1x1DF9MIs4M'
@@ -15,7 +15,7 @@ const options = {
 	}
 };
 
-function fetchDog() {
+async function fetchDog() {
     fetch(`${baseURL}`, options)
     .then(response => response.json())
     .then(renderDog)
@@ -114,7 +114,7 @@ function handleAdd(e){
     postDog(dogObj)
 }
 
-function getDog() {
+async function getDog() {
   fetch('http://localhost:3000/dogs', options)
   .then(response => response.json())
   .then(showDog)
@@ -185,7 +185,18 @@ function showDog(dog) {
           commentsDiv.append(comment)
         }
       })
-      commentsDiv.append(commentInput, commentSubmit)
+      if (commentsDiv.hasChildNodes()) {
+         
+        if (commentsDiv.classList.contains('hide')) {
+          commentsDiv.classList.remove('hide')
+        } else {
+          commentsDiv.classList.add('hide')
+        }
+        
+      } else  {
+        commentsDiv.append(commentInput, commentSubmit)
+      }
+      
     })
 
     display.append(card) 
@@ -214,4 +225,7 @@ function postDog(dogObj){
   .then(getDog)
   .catch(error => console.log(error))
 }
+
+
+
 
