@@ -48,7 +48,7 @@ html {
 
 .card {
     flex-basis: calc(45% - 10px);
-    height: 85vh;
+    height: auto;
     box-sizing: border-box;
     border: solid;
     margin-left: auto;
@@ -118,10 +118,20 @@ input{
 }
 
 .delete {
-    font-size: 30px;
-    color: gray;
+    font-size: 20px;
+    color: black;
     border-radius: 5px;
     border: none;
-    background-color: transparent;
+    background-color:transparent;
     cursor: pointer;
 }
+
+.comment {
+        font-size: 20px;
+        color: black;
+        border-radius: 5px;
+        border: none;
+        background-color:transparent;
+        cursor: pointer;
+}
+

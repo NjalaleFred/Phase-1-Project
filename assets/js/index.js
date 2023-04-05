@@ -41,14 +41,11 @@ function renderDog(dog) {
         <button class="like">
           <span id="icon"><i class="fa fa-thumbs-up"></i></span>
         </button>
-      
-        `
-    
-       /* let remove = card.querySelector('.delete')
-    
-        remove.addEventListener('click', (e)=> {
-          e.target.parentNode.remove()
-        } )*/
+        <button class="comment">
+        <i class="fa-regular fa-comment"></i>
+        </button>
+      <div class="comments"></div>
+        ` 
 
       const button = card.querySelector('.like')
       let isLiked = false // set initial state to unliked
@@ -60,10 +57,31 @@ function renderDog(dog) {
         }
         isLiked = !isLiked // toggle state
       })
+
+      const commentButton = card.querySelector('.comment')
+      const commentsDiv = card.querySelector('.comments')
+  
+      commentButton.addEventListener('click', () => {
+        const commentInput = document.createElement('input')
+        commentInput.placeholder = 'Comment'
+  
+        const commentSubmit = document.createElement('button')
+        commentSubmit.textContent = 'Comment'
+        commentSubmit.addEventListener('click', () => {
+          const commentText = commentInput.value
+          if (commentText.length > 0) {
+            const comment = document.createElement('p')
+            comment.textContent = commentText
+            commentsDiv.append(comment)
+          }
+        })
+        commentsDiv.append(commentInput, commentSubmit)
+      })
   
       display.append(card) 
     });
   }
+  
   
  function addImage(){
   const add = document.querySelector('#add-img')
@@ -109,8 +127,14 @@ function showDog(dog) {
       <button class="like">
         <span id="icon"><i class="fa fa-thumbs-up"></i></span>
       </button>
+      <button class="comment">
+      <i class="fa-regular fa-comment"></i>
+      </button>
       <button class="delete">Delete</button>
+      <div class="comments"></div>
     `
+
+ 
 
     let remove = card.querySelector('.delete')
 
@@ -129,6 +153,12 @@ function showDog(dog) {
       }
       isLiked = !isLiked // toggle state
     })
+
+    const commentButton = card.querySelector('.comment')
+    const commentsDiv = card.querySelector('.comments')
+
+
+    
 
     display.append(card) 
   });
