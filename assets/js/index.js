@@ -246,21 +246,21 @@ breed.forEach(breed => {
   select.append(dropDown)
 })
 
-// select.addEventListener('change', ()=> {
-//   const breedId = select.value;
-//   fetch(`https://api.thedogapi.com/v1/images/search?breed_id=${breedId}`)
-//   .then(resp => resp.json())
-//   .then(data =>{
-//     const display = document.querySelector('.display')
-//     display.innerHTML = '';
+select.addEventListener('change', ()=> {
+  const breedId = select.value;
+  fetch(`https://api.thedogapi.com/v1/images/search?breed_id=${breedId}`)
+  .then(resp => resp.json())
+  .then(data =>{
+    const display = document.querySelector('.display')
+    display.innerHTML = '';
 
-//     data.forEach(image => {
-//       const img = document.createElement('img');
-//       img.className = 'Image'
-//       img.src = image.url
-//       display.append(img)
-//     })
-//     })
-//   })
+    data.forEach(image => {
+      const img = document.createElement('img');
+      img.className = 'Image'
+      img.src = image.url
+      display.append(img)
+    })
+    })
+  })
 }
 
