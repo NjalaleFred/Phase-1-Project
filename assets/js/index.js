@@ -157,8 +157,22 @@ function showDog(dog) {
     const commentButton = card.querySelector('.comment')
     const commentsDiv = card.querySelector('.comments')
 
+    commentButton.addEventListener('click', () => {
+      const commentInput = document.createElement('input')
+      commentInput.placeholder = 'Comment'
 
-    
+      const commentSubmit = document.createElement('button')
+      commentSubmit.textContent = 'Comment'
+      commentSubmit.addEventListener('click', () => {
+        const commentText = commentInput.value
+        if (commentText.length > 0) {
+          const comment = document.createElement('p')
+          comment.textContent = commentText
+          commentsDiv.append(comment)
+        }
+      })
+      commentsDiv.append(commentInput, commentSubmit)
+    })
 
     display.append(card) 
   });
