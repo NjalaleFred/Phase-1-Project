@@ -135,3 +135,7 @@ input{
         cursor: pointer;
 }
 
+.hide {
+    display: none;
+}
+

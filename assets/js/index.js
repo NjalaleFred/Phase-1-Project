@@ -75,7 +75,19 @@ function renderDog(dog) {
             commentsDiv.append(comment)
           }
         })
-        commentsDiv.append(commentInput, commentSubmit)
+        
+        if (commentsDiv.hasChildNodes()) {
+         
+          if (commentsDiv.classList.contains('hide')) {
+            commentsDiv.classList.remove('hide')
+          } else {
+            commentsDiv.classList.add('hide')
+          }
+          
+        } else  {
+          commentsDiv.append(commentInput, commentSubmit)
+        }
+        
       })
   
       display.append(card) 
@@ -153,11 +165,13 @@ function showDog(dog) {
       }
       isLiked = !isLiked // toggle state
     })
+    
 
     const commentButton = card.querySelector('.comment')
     const commentsDiv = card.querySelector('.comments')
 
     commentButton.addEventListener('click', () => {
+
       const commentInput = document.createElement('input')
       commentInput.placeholder = 'Comment'
 
