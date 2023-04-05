@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded',() => {
    fetchDog()
    addImage()
    getDog()
+   selectBreed()
    
 }) 
 
@@ -226,6 +227,40 @@ function postDog(dogObj){
   .catch(error => console.log(error))
 }
 
+function selectBreed(){
+  fetch('https://api.thedogapi.com/v1/breeds/',options)
+  .then(resp => resp.json())
+  .then(displayBreed)
+  .catch(error => {
+    console.log(error);
+  })
+}
 
+function displayBreed(breed){
+const select = document.querySelector('#select')
 
+breed.forEach(breed => {
+  const dropDown= document.createElement('option')
+  dropDown.value = breed.id
+  dropDown.innerHTML = `${breed.name}`
+  select.append(dropDown)
+})
+
+// select.addEventListener('change', ()=> {
+//   const breedId = select.value;
+//   fetch(`https://api.thedogapi.com/v1/images/search?breed_id=${breedId}`)
+//   .then(resp => resp.json())
+//   .then(data =>{
+//     const display = document.querySelector('.display')
+//     display.innerHTML = '';
+
+//     data.forEach(image => {
+//       const img = document.createElement('img');
+//       img.className = 'Image'
+//       img.src = image.url
+//       display.append(img)
+//     })
+//     })
+//   })
+}
 
