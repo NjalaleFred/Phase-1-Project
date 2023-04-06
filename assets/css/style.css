@@ -87,10 +87,10 @@ h1 {
 }
 
 #add-img{
-    background-color: wheat;
+    background-color: transparent;
     border: solid;
     border-radius: 10px;
-    color: white;
+    color: black;
     height: auto;
     width: 35%;
     margin-bottom: 15px;
@@ -162,7 +162,7 @@ label{
 
 .Image{
     flex-basis: calc(45% - 10px);
-    height: 70vh;
+    height: auto;
     width: 100%;
     box-sizing: border-box;
     border: solid;
@@ -171,6 +171,15 @@ label{
     margin-bottom: 20px;
     border-radius: 7px;
     border-color: black;
+}
+
+.Image img{
+    border-radius: 5px;
+    height: 50vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
 }
 
 lottie-player {

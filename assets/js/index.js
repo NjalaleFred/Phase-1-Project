@@ -251,16 +251,33 @@ select.addEventListener('change', ()=> {
   fetch(`https://api.thedogapi.com/v1/images/search?breed_id=${breedId}`)
   .then(resp => resp.json())
   .then(data =>{
-    const display = document.querySelector('.display')
-    display.innerHTML = '';
 
-    data.forEach(image => {
-      const img = document.createElement('img');
-      img.className = 'Image'
-      img.src = image.url
-      display.append(img)
+
+      const display = document.querySelector('.display')
+     display.innerHTML = '';
+     data.forEach(image => {
+      const div = document.createElement('div');
+      div.className = 'Image'
+      div.innerHTML=`
+       <img src="${image.url}" ></img>
+       <button class="like">
+        <span id="icon"><i class="fa fa-thumbs-up"></i></span>
+      </button>
+       `
+       const button = div.querySelector('.like')
+    let isLiked = false // set initial state to unliked
+    button.addEventListener('click', () => {
+      if (isLiked) {
+        button.style.color = '' // reset to original color
+      } else {
+        button.style.color = 'blue'
+      }
+      isLiked = !isLiked // toggle state
     })
+      // img.src = image.url
+       display.append(div)
     })
+     })
   })
 }
 
