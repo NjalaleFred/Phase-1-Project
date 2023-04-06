@@ -124,6 +124,8 @@ function handleAdd(e){
     postDog(dogObj)
 }
 
+
+
 async function getDog() {
   fetch('http://localhost:3000/dogs', options)
   .then(response => response.json())
@@ -184,7 +186,6 @@ function showDog(dog) {
             }
       }
       
-    
 
     const commentButton = card.querySelector('.comment')
     const commentsDiv = card.querySelector('.comments')
@@ -221,6 +222,7 @@ function showDog(dog) {
     display.append(card) 
   });
 }
+
 
 function handleDelete(dog){
   fetch(`http://localhost:3000/dogs/${dog.id}`, {
