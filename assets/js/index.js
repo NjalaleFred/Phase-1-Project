@@ -49,15 +49,24 @@ function renderDog(dog) {
         ` 
 
       const button = card.querySelector('.like')
-      let isLiked = false // set initial state to unliked
-      button.addEventListener('click', () => {
-        if (isLiked) {
-          button.style.color = '' // reset to original color
-        } else {
-          button.style.color = 'blue'
-        }
-        isLiked = !isLiked // toggle state
+      const key = `liked_${dog.id}`
+      let isLiked = localStorage.getItem(key)==='true'
+      updateButtonColor()
+
+      button.addEventListener('click', ()=>{
+        isLiked = !isLiked
+        localStorage.setItem(key,isLiked.toString())
+        updateButtonColor()
       })
+
+      function updateButtonColor(){
+        if (isLiked) {
+              button.style.color = 'blue' // reset to original color
+            } else {
+              button.style.color = ''
+            }
+      }
+      
 
       const commentButton = card.querySelector('.comment')
       const commentsDiv = card.querySelector('.comments')
@@ -157,15 +166,24 @@ function showDog(dog) {
     } )
 
     const button = card.querySelector('.like')
-    let isLiked = false // set initial state to unliked
-    button.addEventListener('click', () => {
-      if (isLiked) {
-        button.style.color = '' // reset to original color
-      } else {
-        button.style.color = 'blue'
+      const key = `liked_${dog.id}`
+      let isLiked = localStorage.getItem(key)==='true'
+      updateButtonColor()
+
+      button.addEventListener('click', ()=>{
+        isLiked = !isLiked
+        localStorage.setItem(key,isLiked.toString())
+        updateButtonColor()
+      })
+
+      function updateButtonColor(){
+        if (isLiked) {
+              button.style.color = 'blue' // reset to original color
+            } else {
+              button.style.color = ''
+            }
       }
-      isLiked = !isLiked // toggle state
-    })
+      
     
 
     const commentButton = card.querySelector('.comment')
@@ -227,7 +245,7 @@ function postDog(dogObj){
   .catch(error => console.log(error))
 }
 
-function selectBreed(){
+async function selectBreed(){
   fetch('https://api.thedogapi.com/v1/breeds/',options)
   .then(resp => resp.json())
   .then(displayBreed)
@@ -265,15 +283,24 @@ select.addEventListener('change', ()=> {
       </button>
        `
        const button = div.querySelector('.like')
-    let isLiked = false // set initial state to unliked
-    button.addEventListener('click', () => {
-      if (isLiked) {
-        button.style.color = '' // reset to original color
-      } else {
-        button.style.color = 'blue'
-      }
-      isLiked = !isLiked // toggle state
-    })
+       const key = `liked_${image.id}`
+       let isLiked = localStorage.getItem(key)==='true'
+       updateButtonColor()
+ 
+       button.addEventListener('click', ()=>{
+         isLiked = !isLiked
+         localStorage.setItem(key,isLiked.toString())
+         updateButtonColor()
+       })
+ 
+       function updateButtonColor(){
+         if (isLiked) {
+               button.style.color = 'blue' // reset to original color
+             } else {
+               button.style.color = ''
+             }
+       }
+       
       // img.src = image.url
        display.append(div)
     })
