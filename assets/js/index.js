@@ -304,3 +304,8 @@ function displayBreed(breed) {
       });
   });
 }
+
+/**I tried using https://njalalefred.github.io/json/db.json as my fetch in order to post but it shows a CORS
+ * policy error. I have tries many methods to solve it but it refuses. 
+ * In orderto post you must run the localhost. 
+ */
